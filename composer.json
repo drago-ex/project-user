@@ -1,6 +1,7 @@
 {
 	"name": "drago-ex/project-user",
 	"type": "composer-plugin",
+	"description": "Type-safe user and authentication support for Drago Project.",
 	"require": {
 		"php": ">=8.3 <9",
 		"drago-ex/database": "^2.0",
