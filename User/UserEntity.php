@@ -15,7 +15,7 @@ use Drago\Database\Entity;
  * Class representing the user entity in the database.
  * Stores information about the user account, including username, email, password, and token.
  */
-class UsersEntity extends Entity
+class UserEntity extends Entity
 {
 	public const string
 		Table = 'users',

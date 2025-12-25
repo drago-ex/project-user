@@ -17,7 +17,7 @@ use Nette\Security\Passwords;
 use Nette\Security\SimpleIdentity;
 
 
-#[Table(UsersEntity::Table, UsersEntity::ColumnId, class: UsersEntity::class)]
+#[Table(UserEntity::Table, UserEntity::ColumnId, class: UserEntity::class)]
 class UserRepository implements Authenticator, IdentityHandler
 {
 	use Database;
@@ -96,9 +96,9 @@ class UserRepository implements Authenticator, IdentityHandler
 	 * @throws Exception If there is an error while finding the user.
 	 * @throws AttributeDetectionException If there is an error while finding attributes.
 	 */
-	private function findUser(string $user): array|UsersEntity|null
+	private function findUser(string $user): array|UserEntity|null
 	{
-		return $this->find(UsersEntity::ColumnEmail, $user)
+		return $this->find(UserEntity::ColumnEmail, $user)
 			->record();
 	}
 
@@ -109,9 +109,9 @@ class UserRepository implements Authenticator, IdentityHandler
 	 * @throws AttributeDetectionException If there is an error while finding attributes.
 	 * @throws Exception If there is an error while finding the user.
 	 */
-	private function findUserById(string $id): array|UsersEntity|null
+	private function findUserById(string $id): array|UserEntity|null
 	{
-		return $this->find(UsersEntity::ColumnToken, $id)
+		return $this->find(UserEntity::ColumnToken, $id)
 			->record();
 	}
 }

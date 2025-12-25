@@ -4,23 +4,22 @@ declare(strict_types=1);
 
 namespace Drago;
 
-use FilesystemIterator;
-
 
 final class Installer
 {
 	public static function install(): void
 	{
 		$root = self::getProjectRoot();
-		$source = __DIR__ . '/../User';
-		$destination = $root . '/app/Core/User';
+		$projectRoot = $root . '/app/Core/User';
 
-		if (!is_dir($source)) {
-			echo "[project-user] Source directory not found: $source\n";
-			return;
-		}
-
-		self::copy($source, $destination);
+		self::copy(__DIR__ . '/../User/User.php', $projectRoot . '/User.php');
+		self::copy(__DIR__ . '/../User/UserConf.neon', $projectRoot . '/UserConf.neon');
+		self::copy(__DIR__ . '/../User/UserIdentity.php', $projectRoot . '/UserIdentity.php');
+		self::copy(__DIR__ . '/../User/UserIdentityException.php', $projectRoot . '/UserIdentityException.php');
+		self::copy(__DIR__ . '/../User/UserRepository.php', $projectRoot . '/UserRepository.php');
+		self::copy(__DIR__ . '/../User/UserRequireLogged.php', $projectRoot . '/UserRequireLogged.php');
+		self::copy(__DIR__ . '/../User/UserEntity.php', $projectRoot . '/UserEntity.php');
+		self::copy(__DIR__ . '/../User/UserToken.php', $projectRoot . '/UserToken.php');
 
 		echo "[project-user] User support installed\n";
 	}
@@ -33,31 +32,14 @@ final class Installer
 	}
 
 
-	private static function copy(string $source, string $destination): void
+	private static function copy(string $from, string $to): void
 	{
-		if (is_file($source)) {
-			@mkdir(dirname($destination), 0o777, true);
-			copy($source, $destination);
+		if (file_exists($to)) {
+			echo "[project-user] Skipped (exists): $to\n";
 			return;
 		}
 
-		$iterator = new \RecursiveIteratorIterator(
-			new \RecursiveDirectoryIterator(
-				$source,
-				FilesystemIterator::SKIP_DOTS,
-			),
-			\RecursiveIteratorIterator::SELF_FIRST,
-		);
-
-		foreach ($iterator as $item) {
-			$subPath = $iterator->getSubIterator($iterator->getDepth())->getSubPathName();
-			$targetPath = $destination . DIRECTORY_SEPARATOR . $subPath;
-
-			if ($item->isDir()) {
-				@mkdir($targetPath, 0o777, true);
-			} else {
-				copy($item->getPathname(), $targetPath);
-			}
-		}
+		@mkdir(dirname($to), 0o777, true);
+		copy($from, $to);
 	}
 }
