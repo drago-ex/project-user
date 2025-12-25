@@ -12,10 +12,15 @@ final class Installer
 	public static function install(): void
 	{
 		$root = self::getProjectRoot();
-		self::copy(
-			__DIR__ . '/../User',
-			$root . '/app/Core/User',
-		);
+		$source = __DIR__ . '/../User';
+		$destination = $root . '/app/Core/User';
+
+		if (!is_dir($source)) {
+			echo "[project-user] Source directory not found: $source\n";
+			return;
+		}
+
+		self::copy($source, $destination);
 
 		echo "[project-user] User support installed\n";
 	}
@@ -31,33 +36,27 @@ final class Installer
 	private static function copy(string $source, string $destination): void
 	{
 		if (is_file($source)) {
-			if (file_exists($destination)) {
-				echo "[project-user] Skipped (exists): $destination\n";
-				return;
-			}
 			@mkdir(dirname($destination), 0o777, true);
 			copy($source, $destination);
 			return;
 		}
 
-		if (is_dir($source)) {
-			$iterator = new \RecursiveIteratorIterator(
-				new \RecursiveDirectoryIterator(
-					$source,
-					FilesystemIterator::SKIP_DOTS,
-				),
-				\RecursiveIteratorIterator::SELF_FIRST,
-			);
+		$iterator = new \RecursiveIteratorIterator(
+			new \RecursiveDirectoryIterator(
+				$source,
+				FilesystemIterator::SKIP_DOTS,
+			),
+			\RecursiveIteratorIterator::SELF_FIRST,
+		);
 
-			foreach ($iterator as $item) {
-				$subPath = $iterator->getSubIterator($iterator->getDepth())->getSubPathName();
-				$targetPath = $destination . DIRECTORY_SEPARATOR . $subPath;
+		foreach ($iterator as $item) {
+			$subPath = $iterator->getSubIterator($iterator->getDepth())->getSubPathName();
+			$targetPath = $destination . DIRECTORY_SEPARATOR . $subPath;
 
-				if ($item->isDir()) {
-					@mkdir($targetPath, 0o777, true);
-				} else {
-					copy($item->getPathname(), $targetPath);
-				}
+			if ($item->isDir()) {
+				@mkdir($targetPath, 0o777, true);
+			} else {
+				copy($item->getPathname(), $targetPath);
 			}
 		}
 	}
