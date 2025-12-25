@@ -9,3 +9,34 @@ Provides secure and type-consistent access to user data, authentication, tokens,
 - Type-safe exceptions and interfaces (UserIdentityException, UserToken)
 - UsersEntity data entity for working with users in the database
 - Easy integration with Nette DI
+
+## How to use
+```php
+#[Inject]
+public App\Core\User\User $user;
+```
+
+## In the template
+```php
+protected function beforeRender(): void
+{
+	parent::beforeRender();
+	$this->template->user = $this->user;
+}
+```
+
+## Access to identity data
+```latte
+{varType App\Core\User\User $user}
+{block content}
+	<p>{$user->getUserIdentity()->username}</p>
+{/block}
+```
+
+## Secure access to the section
+```php
+final class SecurePresenter extends Presenter
+{
+	use App\Core\User\UserRequireLogged;
+}
+```
