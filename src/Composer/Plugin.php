@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Drago\Composer;
 
 use Composer\Composer;
-use Composer\IO\IOInterface;
-use Composer\Plugin\PluginInterface;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Installer\PackageEvent;
+use Composer\IO\IOInterface;
+use Composer\Plugin\PluginInterface;
 use Drago\Installer;
 
 
