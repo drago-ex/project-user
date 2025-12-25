@@ -35,7 +35,7 @@ final class Installer
 				echo "[project-user] Skipped (exists): $destination\n";
 				return;
 			}
-			@mkdir(dirname($destination), 0777, true);
+			@mkdir(dirname($destination), 0o777, true);
 			copy($source, $destination);
 			return;
 		}
@@ -54,7 +54,7 @@ final class Installer
 				$targetPath = $destination . DIRECTORY_SEPARATOR . $subPath;
 
 				if ($item->isDir()) {
-					@mkdir($targetPath, 0777, true);
+					@mkdir($targetPath, 0o777, true);
 				} else {
 					copy($item->getPathname(), $targetPath);
 				}
