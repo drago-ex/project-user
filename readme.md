@@ -13,6 +13,12 @@ Provides secure and type-consistent access to user data, authentication, tokens,
 - UsersEntity data entity for working with users in the database
 - Easy integration with Nette DI
 
+## Install
+```bash
+composer config --no-plugins allow-plugins.drago-ex/project-user true
+composer require drago-ex/project-user
+```
+
 ## How to use
 ```php
 #[Inject]
