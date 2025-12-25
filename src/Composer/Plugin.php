@@ -6,7 +6,6 @@ namespace Drago\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
-use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
 use Drago\Installer;
@@ -17,35 +16,31 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
 	public static function getSubscribedEvents(): array
 	{
 		return [
-			'post-package-install' => 'onPackageInstall',
-			'post-package-update'  => 'onPackageInstall',
+			'post-autoload-dump' => 'onPostAutoloadDump',
 		];
 	}
 
 
 	public function activate(Composer $composer, IOInterface $io)
 	{
-		// TODO: Implement activate() method.
+		// Aktivace pluginu není potřeba nic speciálního
 	}
 
 
 	public function deactivate(Composer $composer, IOInterface $io)
 	{
-		// TODO: Implement deactivate() method.
+		// Deaktivace pluginu
 	}
 
 
 	public function uninstall(Composer $composer, IOInterface $io)
 	{
-		// TODO: Implement uninstall() method.
+		// Odinstalace pluginu
 	}
 
 
-	public function onPackageInstall(PackageEvent $event): void
+	public function onPostAutoloadDump(): void
 	{
-		$package = $event->getOperation()->getPackage();
-		if ($package->getName() === 'drago-ex/project-user') {
-			Installer::install();
-		}
+		Installer::install();
 	}
 }
