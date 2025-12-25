@@ -1,5 +1,5 @@
 {
-	"name": "drago-ex/project-db",
+	"name": "drago-ex/project-user",
 	"type": "composer-plugin",
 	"require": {
 		"php": ">=8.3 <9",
