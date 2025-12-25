@@ -2,6 +2,9 @@
 A user management and authentication package for the Drago Project.
 Provides secure and type-consistent access to user data, authentication, tokens, and access protection.
 
+[![PHP version](https://badge.fury.io/ph/drago-ex%2Fproject-user.svg)](https://badge.fury.io/ph/drago-ex%2Fproject-user)
+[![Coding Style](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml/badge.svg)](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml)
+
 ## Main features
 - User identity management via User and UserIdentity
 - Authentication and token management via UserRepository
