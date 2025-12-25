@@ -14,7 +14,7 @@ final class Installer
 		$root = self::getProjectRoot();
 		self::copy(
 			__DIR__ . '/../User',
-			$root . '/app/Core/User'
+			$root . '/app/Core/User',
 		);
 
 		echo "[project-user] User support installed\n";
@@ -42,8 +42,11 @@ final class Installer
 
 		if (is_dir($source)) {
 			$iterator = new \RecursiveIteratorIterator(
-				new \RecursiveDirectoryIterator($source, FilesystemIterator::SKIP_DOTS),
-				\RecursiveIteratorIterator::SELF_FIRST
+				new \RecursiveDirectoryIterator(
+					$source,
+					FilesystemIterator::SKIP_DOTS,
+				),
+				\RecursiveIteratorIterator::SELF_FIRST,
 			);
 
 			foreach ($iterator as $item) {
