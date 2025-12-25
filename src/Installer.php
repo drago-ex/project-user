@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Drago;
+namespace Drago\UserPlugin;
 
 
 final class Installer

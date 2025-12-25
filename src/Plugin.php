@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Drago\Composer;
+namespace Drago\UserPlugin\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
-use Drago\Installer;
+use Drago\UserPlugin\Installer;
 
 
 final class Plugin implements PluginInterface, EventSubscriberInterface
@@ -43,8 +43,9 @@ final class Plugin implements PluginInterface, EventSubscriberInterface
 
 	public function onPackageInstall(PackageEvent $event): void
 	{
-		$package = $event->getOperation()->getPackage();
-		if ($package->getName() === 'drago-ex/project-user') {
+		$operation = $event->getOperation();
+		$package = method_exists($operation, 'getPackage') ? $operation->getPackage() : null;
+		if ($package && $package->getName() === 'drago-ex/project-user') {
 			Installer::install();
 		}
 	}

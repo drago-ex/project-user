@@ -12,11 +12,11 @@
 	},
 	"autoload": {
 		"psr-4": {
-			"Drago\\": "src/"
+			"Drago\\\\UserPlugin\\\\": "src/"
 		}
 	},
 	"extra": {
-		"class": "Drago\\Composer\\Plugin"
+		"class": "Drago\\\\UserPlugin\\\\Composer\\\\Plugin"
 	},
 	"require-dev": {
 		"composer/composer": "^2.9",
