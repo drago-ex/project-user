@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace Drago\UserPlugin\Composer;
+namespace DragoUserPlugin\Composer;
 
 use Composer\Composer;
 use Composer\EventDispatcher\EventSubscriberInterface;
 use Composer\Installer\PackageEvent;
 use Composer\IO\IOInterface;
 use Composer\Plugin\PluginInterface;
-use Drago\UserPlugin\Installer;
+use DragoUserPlugin\Installer;
 
 
 final class Plugin implements PluginInterface, EventSubscriberInterface
