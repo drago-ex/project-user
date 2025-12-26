@@ -11,15 +11,20 @@ final class Installer
 	{
 		$root = self::getProjectRoot();
 		$projectRoot = $root . '/app/Core/User';
+		$files = [
+			'User.php',
+			'UserConf.neon',
+			'UserIdentity.php',
+			'UserIdentityException.php',
+			'UserRepository.php',
+			'UserRequireLogged.php',
+			'UserEntity.php',
+			'UserToken.php',
+		];
 
-		self::copy(__DIR__ . '/../User/User.php', $projectRoot . '/User.php');
-		self::copy(__DIR__ . '/../User/UserConf.neon', $projectRoot . '/UserConf.neon');
-		self::copy(__DIR__ . '/../User/UserIdentity.php', $projectRoot . '/UserIdentity.php');
-		self::copy(__DIR__ . '/../User/UserIdentityException.php', $projectRoot . '/UserIdentityException.php');
-		self::copy(__DIR__ . '/../User/UserRepository.php', $projectRoot . '/UserRepository.php');
-		self::copy(__DIR__ . '/../User/UserRequireLogged.php', $projectRoot . '/UserRequireLogged.php');
-		self::copy(__DIR__ . '/../User/UserEntity.php', $projectRoot . '/UserEntity.php');
-		self::copy(__DIR__ . '/../User/UserToken.php', $projectRoot . '/UserToken.php');
+		foreach ($files as $file) {
+			self::copy(__DIR__ . '/../resources/User/' . $file, $projectRoot . '/' . basename($file));
+		}
 
 		echo "[project-user] User support installed\n";
 	}
