@@ -17,7 +17,6 @@ Provides secure and type-consistent access to user data, authentication, tokens,
 ```bash
 composer config --no-plugins allow-plugins.drago-ex/project-user true
 composer require drago-ex/project-user
-composer remove drago-ex/project-user --no-interaction
 ```
 
 ## How to use
