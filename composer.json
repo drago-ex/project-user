@@ -12,7 +12,7 @@
 		"drago-project": {
 			"install": {
 				"copy": {
-					"src/resources/User": "app/Core/User"
+					"resources/User": "app/Core/User"
 				}
 			}
 		}
@@ -21,6 +21,6 @@
 		"phpstan/phpstan-nette": "^1.2.9"
 	},
 	"scripts": {
-		"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon src/resources/User"
+		"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon resources/User"
 	}
 }
