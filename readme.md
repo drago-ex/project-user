@@ -5,6 +5,11 @@ Provides secure and type-consistent access to user data, authentication, tokens,
 [![PHP version](https://badge.fury.io/ph/drago-ex%2Fproject-user.svg)](https://badge.fury.io/ph/drago-ex%2Fproject-user)
 [![Coding Style](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml/badge.svg)](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml)
 
+## Requirements
+- PHP >= 8.3
+- Nette Framework
+- Drago Project core packages
+
 ## Main features
 - User identity management via User and UserIdentity
 - Authentication and token management via UserRepository
