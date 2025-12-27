@@ -7,7 +7,6 @@ Provides secure and type-consistent access to user data, authentication, tokens,
 
 ## Requirements
 - PHP >= 8.3
-- Nette Framework
 - Drago Project core packages
 
 ## Main features
