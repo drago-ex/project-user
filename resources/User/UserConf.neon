@@ -1,2 +1,2 @@
 services:
-	user: App\Core\User\User
+	user: App\Core\User\UserAccess

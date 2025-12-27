@@ -23,7 +23,7 @@ composer remove drago-ex/project-user --no-interaction
 ## How to use
 ```php
 #[Inject]
-public App\Core\User\User $user;
+public App\Core\User\UserAccess $userAccess;
 ```
 
 ## In the template
@@ -31,15 +31,15 @@ public App\Core\User\User $user;
 protected function beforeRender(): void
 {
 	parent::beforeRender();
-	$this->template->user = $this->user;
+	$this->template->userAccess = $this->userAccess;
 }
 ```
 
 ## Access to identity data
 ```latte
-{varType App\Core\User\User $user}
+{varType App\Core\User\UserAccess $userAccess}
 {block content}
-	<p>{$user->getUserIdentity()->username}</p>
+	<p>{$userAccess->getUserIdentity()->username}</p>
 {/block}
 ```
 

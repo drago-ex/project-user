@@ -12,7 +12,7 @@ final class Installer
 		$root = self::getProjectRoot();
 		$projectRoot = $root . '/app/Core/User';
 		$files = [
-			'User.php',
+			'UserAccess.php',
 			'UserConf.neon',
 			'UserIdentity.php',
 			'UserIdentityException.php',

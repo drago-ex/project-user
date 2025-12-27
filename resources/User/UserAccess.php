@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Core\User;
 
-use Nette\Security\User as NetteUser;
+use Nette\Security\User;
 
 
-class User extends NetteUser
+class UserAccess extends User
 {
 	/**
 	 * Retrieves user data from the identity.
