@@ -1,27 +1,26 @@
 {
-	"name": "drago-ex/project-user",
-	"type": "composer-plugin",
-	"description": "Type-safe user and authentication support for Drago Project.",
-	"require": {
-		"php": ">=8.3 <9",
-		"drago-ex/database": "^2.0",
-		"nette/security": "^3.2",
-		"nette/application": "^3.2",
-		"composer-plugin-api": "^2.3"
-	},
-	"autoload": {
-		"psr-4": {
-			"DragoUserPlugin\\": "src/"
+  "name": "drago-ex/project-user",
+  "type": "drago-project-resource",
+  "description": "Type-safe user and authentication support for Drago Project.",
+  "require": {
+	"php": ">=8.3 <9",
+	"drago-ex/database": "^2.0",
+	"nette/security": "^3.2",
+	"nette/application": "^3.2"
+  },
+  "extra": {
+	"drago-project": {
+	  "install": {
+		"copy": {
+		  "src/resources/User": "app/Core/User"
 		}
-	},
-	"extra": {
-		"class": "DragoUserPlugin\\Composer\\Plugin"
-	},
-	"require-dev": {
-		"composer/composer": "^2.9",
-		"phpstan/phpstan-nette": "^1.2.9"
-	},
-	"scripts": {
-		"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon resources/User"
+	  }
 	}
+  },
+  "require-dev": {
+	"phpstan/phpstan-nette": "^1.2.9"
+  },
+  "scripts": {
+	"phpstan": "phpstan analyse --level 5 --configuration phpstan.neon src/resources/User"
+  }
 }

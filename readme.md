@@ -20,7 +20,6 @@ Provides secure and type-consistent access to user data, authentication, tokens,
 
 ## Install
 ```bash
-composer config --no-plugins allow-plugins.drago-ex/project-user true
 composer require drago-ex/project-user
 ```
 
