@@ -2,6 +2,7 @@
 	"name": "drago-ex/project-user",
 	"type": "drago-project-resource",
 	"description": "Type-safe user and authentication support for Drago Project.",
+	"license": ["MIT"],
 	"require": {
 		"php": ">=8.3 <9",
 		"drago-ex/database": "^2.0",
