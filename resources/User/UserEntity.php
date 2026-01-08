@@ -25,18 +25,9 @@ class UserEntity extends Entity
 		ColumnPassword = 'password',
 		ColumnToken = 'token';
 
-	/** @var int User ID */
 	public int $id;
-
-	/** @var string Username */
 	public string $username;
-
-	/** @var string User's email address */
 	public string $email;
-
-	/** @var string User's password */
 	public string $password;
-
-	/** @var string Authentication token for the user */
 	public string $token;
 }

@@ -2,9 +2,8 @@
 
 declare(strict_types=1);
 
-namespace App\Core\User;
-
 use Nette\Application\UI\Presenter;
+use Nette\Security\User;
 
 
 trait UserRequireLogged
@@ -14,17 +13,17 @@ trait UserRequireLogged
 	 * If the user is not logged in, they will be redirected to the login page.
 	 * If the user was logged out due to inactivity, a message will be displayed.
 	 */
-	public function injectRequireLoggedUser(Presenter $presenter, UserAccess $userAccess): void
+	public function injectRequireLoggedUser(Presenter $presenter, User $user): void
 	{
 		// When the application starts, check the user's login status.
-		$presenter->onStartup[] = function () use ($presenter, $userAccess) {
+		$presenter->onStartup[] = function () use ($presenter, $user) {
 			// If the user is logged in, no action is taken.
-			if ($userAccess->isLoggedIn()) {
+			if ($user->isLoggedIn()) {
 				return;
 			}
 
 			// If the user was logged out due to inactivity, display a message and redirect them to the login page.
-			if ($userAccess->getLogoutReason() === $userAccess::LogoutInactivity) {
+			if ($user->getLogoutReason() === $user::LogoutInactivity) {
 				$presenter->flashMessage('You have been signed out due to inactivity. Please sign in again.');
 				$presenter->redirect(':Backend:Sign:in', ['backlink' => $presenter->storeRequest()]);
 			} else {
