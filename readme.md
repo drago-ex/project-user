@@ -1,6 +1,6 @@
 ## Drago Project user
-A user management and authentication package for the Drago Project.
-Provides secure and type-consistent access to user data, authentication, tokens, and access protection.
+A small helper package for working with the authenticated user in Nette.
+Provides type-safe access to identity data and a simple, extensible user identity object.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/drago-ex/project-user/main/license)
 [![PHP version](https://badge.fury.io/ph/drago-ex%2Fproject-user.svg)](https://badge.fury.io/ph/drago-ex%2Fproject-user)
@@ -11,35 +11,31 @@ Provides secure and type-consistent access to user data, authentication, tokens,
 - Nette Framework
 - Drago Project core packages
 
-## Main features
-- User identity management via User and UserIdentity
-- Authentication and token management via UserRepository
-- Centralized access protection via the UserRequireLogged trait
-- Type-safe exceptions and interfaces (UserIdentityException, UserToken)
-- UsersEntity data entity for working with users in the database
-- Easy integration with Nette DI
-
 ## Install
 ```bash
 composer require drago-ex/project-user
 ```
 
-## How to use
+## Usage
+Injecting the user service:
 ```php
-#[Inject]
-public App\Core\User\UserAccess $userAccess;
-```
+use App\Core\User\UserAccess;
+use Nette\DI\Attributes\Inject;
 
-## In the template
-```php
-protected function beforeRender(): void
+final class SomePresenter extends Presenter
 {
-	parent::beforeRender();
-	$this->template->userAccess = $this->userAccess;
+	#[Inject]
+	public UserAccess $userAccess;
+
+	protected function beforeRender(): void
+	{
+		parent::beforeRender();
+		$this->template->userAccess = $this->userAccess;
+	}
 }
 ```
 
-## Access to identity data
+## Identity data in latte
 ```latte
 {varType App\Core\User\UserAccess $userAccess}
 {block content}
@@ -47,10 +43,20 @@ protected function beforeRender(): void
 {/block}
 ```
 
-## Secure access to the section
+## User identity object
+For common identity fields, use the typed UserIdentity object:
 ```php
-final class SecurePresenter extends Presenter
-{
-	use App\Core\User\UserRequireLogged;
-}
+$identity = $userAccess->getUserIdentity();
+
+echo $identity->username;
+echo $identity->email;
 ```
+
+The UserIdentity class is intentionally simple and can be extended
+with additional attributes (e.g. id, roles, permissions) as needed.
+
+UserIdentityException is thrown when identity data is missing or invalid.
+
+## Notes
+This package does not handle authentication or authorization.
+Focused only on safe and convenient access to user identity data.
