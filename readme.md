@@ -1,5 +1,5 @@
 ## Drago Project user
-A small helper package for working with the authenticated user in Nette.
+A small helper package for working with the authenticated user in Drago project.
 Provides type-safe access to identity data and a simple, extensible user identity object.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/drago-ex/project-user/main/license)
