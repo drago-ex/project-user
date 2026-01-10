@@ -58,5 +58,5 @@ with additional attributes (e.g. id, roles, permissions) as needed.
 UserIdentityException is thrown when identity data is missing or invalid.
 
 ## Notes
-This package does not handle authentication or authorization.
-Focused only on safe and convenient access to user identity data.
+- This package does not handle authentication or authorization.
+- Focused only on safe and convenient access to user identity data.
