@@ -43,4 +43,26 @@ class UserAccess extends User
 
 		return new UserIdentity(username: $username, email: $email);
 	}
+
+
+	/**
+	 * Checks if the user has any of the given privileges on a resource.
+	 */
+	public function isAnyAllowed(string $resource, string ...$privileges): bool
+	{
+		if ($privileges === []) {
+			return false;
+		}
+
+		$authorization = $this->getAuthorizator();
+		foreach ($this->getRoles() as $role) {
+			foreach ($privileges as $privilege) {
+				if ($authorization->isAllowed($role, $resource, $privilege)) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
 }
