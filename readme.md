@@ -1,8 +1,9 @@
-## Drago Project user
+# Drago Project user
+
 A small helper package for working with the authenticated user in Drago project.
 Provides type-safe access to identity data and a simple, extensible user identity object.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://raw.githubusercontent.com/drago-ex/project-user/main/license)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/drago-ex/project-user/blob/main/license)
 [![PHP version](https://badge.fury.io/ph/drago-ex%2Fproject-user.svg)](https://badge.fury.io/ph/drago-ex%2Fproject-user)
 [![Coding Style](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml/badge.svg)](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml)
 
@@ -11,12 +12,12 @@ Provides type-safe access to identity data and a simple, extensible user identit
 - Nette Framework
 - Drago Project core packages
 
-## Install
+## Installation
 ```bash
 composer require drago-ex/project-user
 ```
 
-## Usage
+## Examples
 Injecting the user service:
 ```php
 use App\Core\User\UserAccess;
