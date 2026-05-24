@@ -10,34 +10,31 @@ use Nette\Security\User;
 class UserAccess extends User
 {
 	/**
-	 * Retrieves user data from the identity.
-	 * If a name is specified, returns only the corresponding value.
-	 *
-	 * @throws UserIdentityException If the requested data is unavailable.
+	 * Get user data from identity.
+	 * @throws UserIdentityException
 	 */
 	public function getUserData(?string $name = null): mixed
 	{
 		$data = $this->getIdentity()?->getData() ?? [];
 
-		if ($name && !array_key_exists($name, $data)) {
+		if ($name !== null && !array_key_exists($name, $data)) {
 			throw new UserIdentityException("Undefined array key \"$name\" in identity data.");
 		}
 
-		return $name ? $data[$name] : $data;
+		return $name !== null ? $data[$name] : $data;
 	}
 
 
 	/**
-	 * Retrieves the UserIdentity object.
-	 *
-	 * @throws UserIdentityException If the identity data is incorrect.
+	 * Get user identity.
+	 * @throws UserIdentityException
 	 */
 	public function getUserIdentity(): UserIdentity
 	{
 		$username = $this->getUserData('username');
 		$email = $this->getUserData('email');
 
-		if (!$username || !$email) {
+		if (!is_string($username) || !is_string($email)) {
 			throw new UserIdentityException('User identity is incomplete.');
 		}
 
@@ -45,9 +42,7 @@ class UserAccess extends User
 	}
 
 
-	/**
-	 * Checks if the user has any of the given privileges on a resource.
-	 */
+	/** Check user privileges. */
 	public function isAnyAllowed(string $resource, string ...$privileges): bool
 	{
 		if ($privileges === []) {
