@@ -17,6 +17,10 @@ Provides type-safe access to identity data and a simple, extensible user identit
 composer require drago-ex/project-user
 ```
 
+## Project files
+The package has `extra.drago-project.skip` set to `false`, so `drago-install` copies the configured files automatically.
+If `skip` is set to `true`, copy those files manually according to the `copy` section in `composer.json`.
+
 ## Examples
 Injecting the user service:
 ```php
