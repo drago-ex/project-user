@@ -7,7 +7,6 @@ namespace App\Core\User;
 use Exception;
 
 
-/** User identity exception. */
 class UserIdentityException extends Exception
 {
 }

@@ -10,7 +10,7 @@ use Nette\Security\User;
 class UserAccess extends User
 {
 	/**
-	 * Get user data from identity.
+	 * Returns user data from the identity.
 	 * @throws UserIdentityException
 	 */
 	public function getUserData(?string $name = null): mixed
@@ -26,7 +26,7 @@ class UserAccess extends User
 
 
 	/**
-	 * Get user identity.
+	 * Returns the user identity.
 	 * @throws UserIdentityException
 	 */
 	public function getUserIdentity(): UserIdentity
@@ -42,7 +42,6 @@ class UserAccess extends User
 	}
 
 
-	/** Check user privileges. */
 	public function isAnyAllowed(string $resource, string ...$privileges): bool
 	{
 		if ($privileges === []) {
