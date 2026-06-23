@@ -26,34 +26,34 @@ in this package's `composer.json`. To skip this package, set `"skip": true` unde
 ## Examples
 Injecting the user service:
 ```php
-use App\Core\User\UserAccess;
+use App\Core\Security\CurrentUser;
 use Nette\DI\Attributes\Inject;
 
 final class SomePresenter extends Presenter
 {
 	#[Inject]
-	public UserAccess $userAccess;
+	public CurrentUser $currentUser;
 
 	protected function beforeRender(): void
 	{
 		parent::beforeRender();
-		$this->template->userAccess = $this->userAccess;
+		$this->template->currentUser = $this->currentUser;
 	}
 }
 ```
 
 ## Identity data in latte
 ```latte
-{varType App\Core\User\UserAccess $userAccess}
+{varType App\Core\Security\CurrentUser $currentUser}
 {block content}
-	<p>{$userAccess->getUserIdentity()->username}</p>
+	<p>{$currentUser->getUserIdentity()->username}</p>
 {/block}
 ```
 
 ## User identity object
 For common identity fields, use the typed UserIdentity object:
 ```php
-$identity = $userAccess->getUserIdentity();
+$identity = $currentUser->getUserIdentity();
 
 echo $identity->username;
 echo $identity->email;

@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace App\Core\User;
+namespace App\Core\Security;
 
 use Nette\Security\User;
 
 
-class UserAccess extends User
+class CurrentUser extends User
 {
 	/**
 	 * Returns user data from the identity.

@@ -12,7 +12,7 @@
 		"drago-tools": {
 			"install": {
 				"copy": {
-					"resources/User": "app/Core/User"
+					"resources/Security": "app/Core/Security"
 				}
 			}
 		}
