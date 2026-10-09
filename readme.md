@@ -8,22 +8,26 @@ Provides type-safe access to identity data and a simple, extensible user identit
 [![Coding Style](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml/badge.svg)](https://github.com/drago-ex/project-user/actions/workflows/coding-style.yml)
 
 ## Requirements
+
 - PHP >= 8.3
 - Nette Framework
 - Drago Project core packages
 
 ## Installation
+
 ```bash
 composer require drago-ex/project-user
 ```
 
 ## Project files
+
 File copying is handled automatically by [drago-ex/project-tools](https://github.com/drago-ex/project-tools),
 which must be installed in your project. Without it, copy the files manually according to the `copy` section
 in this package's `composer.json`. To skip this package, set `"skip": true` under
 `extra.drago-tools.packages.<package-name>` in your root `composer.json`.
 
 ## Examples
+
 Injecting the user service:
 ```php
 use App\Core\Security\CurrentUser;
@@ -43,6 +47,7 @@ final class SomePresenter extends Presenter
 ```
 
 ## Identity data in latte
+
 ```latte
 {varType App\Core\Security\CurrentUser $currentUser}
 {block content}
@@ -51,6 +56,7 @@ final class SomePresenter extends Presenter
 ```
 
 ## User identity object
+
 For common identity fields, use the typed UserIdentity object:
 ```php
 $identity = $currentUser->getUserIdentity();
@@ -65,5 +71,6 @@ with additional attributes (e.g. id, roles, permissions) as needed.
 UserIdentityException is thrown when identity data is missing or invalid.
 
 ## Notes
+
 - This package does not handle authentication or authorization.
 - Focused only on safe and convenient access to user identity data.
