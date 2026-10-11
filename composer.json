@@ -11,9 +11,6 @@
 	"require-dev": {
 		"phpstan/phpstan-nette": "^2.0"
 	},
-	"scripts": {
-		"phpstan": "phpstan analyse"
-	},
 	"extra": {
 		"drago-tools": {
 			"install": {
@@ -22,5 +19,8 @@
 				}
 			}
 		}
+	},
+	"scripts": {
+		"phpstan": "phpstan analyse"
 	}
 }
