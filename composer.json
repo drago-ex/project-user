@@ -2,7 +2,7 @@
 	"name": "drago-ex/project-user",
 	"description": "A small helper package for working with the authenticated user in Drago project.",
 	"type": "drago-tools-resource",
-	"license": ["MIT"],
+	"license": "MIT",
 	"require": {
 		"php": ">=8.3 <9",
 		"nette/security": "^3.2",
