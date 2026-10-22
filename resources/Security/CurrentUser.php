@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Core\Security;
 
+use Nette\InvalidStateException;
 use Nette\Security\User;
 
 
@@ -39,6 +40,27 @@ class CurrentUser extends User
 		}
 
 		return new UserIdentity(username: $username, email: $email);
+	}
+
+
+	/**
+	 * Like isAnyAllowed(), for showing what the user may use (menu items, buttons): without an authorizator
+	 * (drago-ex/permission is optional) everything is permitted, and a resource the ACL does not know is not,
+	 * as the Authorization trait of drago-ex/permission decides. Without privileges the whole resource is checked.
+	 */
+	public function isPermitted(string $resource, string ...$privileges): bool
+	{
+		if ($this->getAuthorizatorIfExists() === null) {
+			return true;
+		}
+
+		try {
+			return $privileges === []
+				? $this->isAllowed($resource)
+				: $this->isAnyAllowed($resource, ...$privileges);
+		} catch (InvalidStateException) {
+			return false;
+		}
 	}
 
 

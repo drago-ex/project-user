@@ -77,6 +77,14 @@ a menu item that leads to several actions:
 $currentUser->isAnyAllowed('Backend:Blog', 'default-read', 'comments-read');
 ```
 
+## Showing what the user may use
+
+`isPermitted()` is `isAnyAllowed()` for menus and buttons: without an authorizator (no drago-ex/permission)
+it is always true, and a resource the ACL does not know is denied instead of throwing:
+```php
+$currentUser->isPermitted('Backend:Blog', 'articles-write');
+```
+
 ## Notes
 
 - This package does not handle authentication or authorization.

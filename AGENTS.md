@@ -17,7 +17,7 @@ Use this file as package-specific guidance when working in this repository. Keep
 
 ## Key Parts
 - `resources/Security` is copied to `app/Core/Security`; `UserConf.neon` replaces Nette's `user` service with `CurrentUser`.
-- `CurrentUser::getUserIdentity()` (typed username + email, `UserIdentityException` when missing) is used by the user menu of project-backend-ui; `isAnyAllowed()` (Nette `isAllowed()` for any of the privileges) by its `SidebarMenu::build()`, which leaves out menu items the user may not open.
+- `CurrentUser::getUserIdentity()` (typed username + email, `UserIdentityException` when missing) is used by the user menu of project-backend-ui; `isAnyAllowed()` is Nette `isAllowed()` for any of the privileges; `isPermitted()` wraps it for showing things (true without an authorizator, false for an unknown resource) and is used by `SidebarMenu::build()` of project-backend-ui and `BaseControl::isWriteAllowed()` of project-blog, project-static-page and project-permission ("{control}-write", the privilege the Authorization trait checks for signals).
 
 ## Dependencies
 
