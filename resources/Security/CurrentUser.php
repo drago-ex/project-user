@@ -42,18 +42,12 @@ class CurrentUser extends User
 	}
 
 
+	/** True when any role of the user has at least one of the privileges on the resource (e.g. for a menu item). */
 	public function isAnyAllowed(string $resource, string ...$privileges): bool
 	{
-		if ($privileges === []) {
-			return false;
-		}
-
-		$authorization = $this->getAuthorizator();
-		foreach ($this->getRoles() as $role) {
-			foreach ($privileges as $privilege) {
-				if ($authorization->isAllowed($role, $resource, $privilege)) {
-					return true;
-				}
+		foreach ($privileges as $privilege) {
+			if ($this->isAllowed($resource, $privilege)) {
+				return true;
 			}
 		}
 

@@ -69,6 +69,14 @@ with additional attributes (e.g. id, roles, permissions) as needed.
 
 UserIdentityException is thrown when identity data is missing or invalid.
 
+## Any of several privileges
+
+`isAnyAllowed()` is true when the user may do at least one of the privileges on a resource, e.g. to show
+a menu item that leads to several actions:
+```php
+$currentUser->isAnyAllowed('Backend:Blog', 'default-read', 'comments-read');
+```
+
 ## Notes
 
 - This package does not handle authentication or authorization.

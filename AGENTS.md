@@ -15,6 +15,10 @@ Use this file as package-specific guidance when working in this repository. Keep
 - `.github/`: CI workflows; keep their PHP versions and commands consistent with Composer and the package scripts.
 - `composer.json`: package metadata, dependency constraints, autoloading, and available Composer scripts.
 
+## Key Parts
+- `resources/Security` is copied to `app/Core/Security`; `UserConf.neon` replaces Nette's `user` service with `CurrentUser`.
+- `CurrentUser::getUserIdentity()` (typed username + email, `UserIdentityException` when missing) is used by the user menu of project-backend-ui; `isAnyAllowed()` (Nette `isAllowed()` for any of the privileges) by its `SidebarMenu::build()`, which leaves out menu items the user may not open.
+
 ## Dependencies
 
 Composer constraints describe the package contract. Before changing integration behavior, inspect the source and the actual call sites in this package; do not infer runtime usage solely from dependency declarations.
