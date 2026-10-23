@@ -1,5 +1,7 @@
 # Drago Project user
 
+English | [Čeština](readme.cs.md)
+
 A small helper package for working with the authenticated user in Drago project.
 Provides type-safe access to identity data and a simple, extensible user identity object.
 
