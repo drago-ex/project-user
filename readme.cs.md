@@ -90,5 +90,5 @@ $currentUser->isPermitted('Backend:Blog', 'articles-write');
 
 ## Poznámky
 
-- Balíček neřeší přihlašování ani autorizaci.
-- Zaměřuje se jen na bezpečný a pohodlný přístup k údajům identity uživatele.
+- Balíček nepřihlašuje uživatele; dává bezpečný přístup k údajům identity a výše popsané kontroly oprávnění
+  (samotné ACL pochází z drago-ex/permission).

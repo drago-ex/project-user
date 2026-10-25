@@ -90,5 +90,5 @@ $currentUser->isPermitted('Backend:Blog', 'articles-write');
 
 ## Notes
 
-- This package does not handle authentication or authorization.
-- Focused only on safe and convenient access to user identity data.
+- This package does not sign users in; it gives safe access to the identity data and the permission checks above
+  (the ACL itself comes from drago-ex/permission).
