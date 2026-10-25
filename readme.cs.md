@@ -82,7 +82,8 @@ $currentUser->isAnyAllowed('Backend:Blog', 'default-read', 'comments-read');
 ## Zobrazení toho, co uživatel smí použít
 
 `isPermitted()` je `isAnyAllowed()` pro menu a tlačítka: bez autorizátoru (bez drago-ex/permission)
-vrací vždy true a zdroj, který ACL nezná, je zamítnut místo vyhození výjimky:
+vrací vždy true a zdroj, který ACL nezná, je zamítnut místo vyhození výjimky. Každá role se ptá zvlášť, takže role,
+kterou ACL nezná (např. zastaralá v session), nezamítne ostatní:
 ```php
 $currentUser->isPermitted('Backend:Blog', 'articles-write');
 ```
