@@ -1,7 +1,5 @@
 # Drago Project user
 
-[English](readme.md) | Čeština
-
 Malý pomocný balíček pro práci s přihlášeným uživatelem v projektu Drago.
 Poskytuje typově bezpečný přístup k údajům identity a jednoduchý, rozšiřitelný objekt identity.
 
