@@ -18,12 +18,10 @@ Poskytuje typově bezpečný přístup k údajům identity a jednoduchý, rozši
 composer require drago-ex/project-user
 ```
 
-## Soubory projektu
+## Soubory kopírované do projektu
 
-Kopírování souborů obstarává automaticky [drago-ex/project-tools](https://github.com/drago-ex/project-tools),
-který musí být v projektu nainstalovaný. Bez něj zkopírujte soubory ručně podle sekce `copy`
-v `composer.json` tohoto balíčku. Pro přeskočení balíčku nastavte `"skip": true` v
-`extra.drago-tools.packages.<package-name>` v kořenovém `composer.json`.
+Soubory do projektu kopíruje [drago-ex/project-tools](https://github.com/drago-ex/project-tools)
+podle nastavení v `extra.drago-tools` v `composer.json` tohoto balíčku.
 
 ## Příklady
 
