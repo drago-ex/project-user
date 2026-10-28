@@ -9,8 +9,7 @@ Poskytuje typově bezpečný přístup k údajům identity a jednoduchý, rozši
 ## Požadavky
 
 - PHP >= 8.3, < 9
-- Nette Framework
-- Základní balíčky Drago Project
+- [Drago Project](https://github.com/drago-ex/project)
 
 ## Instalace
 

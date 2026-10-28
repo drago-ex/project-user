@@ -9,8 +9,7 @@ Provides type-safe access to identity data and a simple, extensible user identit
 ## Requirements
 
 - PHP >= 8.3, < 9
-- Nette Framework
-- Drago Project core packages
+- [Drago Project](https://github.com/drago-ex/project)
 
 ## Installation
 
