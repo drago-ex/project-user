@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types=1);
 
 namespace App\Core\Security;
 
@@ -8,6 +6,7 @@ use Nette\InvalidArgumentException;
 use Nette\InvalidStateException;
 use Nette\Security\Authorizator;
 use Nette\Security\User;
+use function array_key_exists, is_string;
 
 
 class CurrentUser extends User
@@ -65,7 +64,7 @@ class CurrentUser extends User
 					if ($authorizator->isAllowed($role, $resource, $privilege)) {
 						return true;
 					}
-				} catch (InvalidStateException | InvalidArgumentException) {
+				} catch (InvalidStateException|InvalidArgumentException) {
 					// an unknown role or resource, or an empty name, is not allowed
 				}
 			}
