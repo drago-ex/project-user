@@ -17,7 +17,7 @@ Use this file as package-specific guidance when working in this repository. Keep
 
 ## Key Parts
 - `resources/Security` is copied to `app/Core/Security`; `UserConf.neon` replaces Nette's `user` service with `CurrentUser`.
-- `CurrentUser::getUserIdentity()` (typed username + email, `UserIdentityException` when missing) is used by the user menu of project-backend-ui; `isAnyAllowed()` is Nette `isAllowed()` for any of the privileges; `isPermitted()` wraps it for showing things (true without an authorizator, false for an unknown resource) and is used by `SidebarMenu::build()` of project-backend-ui.
+- `CurrentUser::getUserIdentity()` (typed username + email, `UserIdentityException` when missing) is used by the user menu of project-backend-ui. `CurrentUser` has no permission checks: menus and buttons use `Drago\Permission\Privilege::isAllowed()` (any of the privileges, unknown resource → false) with Nette's `User`.
 
 ## Dependencies
 

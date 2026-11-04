@@ -66,24 +66,7 @@ o další atributy (např. id, role, oprávnění).
 
 Když údaje identity chybí nebo jsou neplatné, vyhodí se UserIdentityException.
 
-## Alespoň jedno z několika privilegií
-
-`isAnyAllowed()` vrací true, když uživatel smí aspoň jedno z privilegií nad zdrojem, například pro zobrazení
-položky menu, která vede k několika akcím:
-```php
-$currentUser->isAnyAllowed('Backend:Blog', 'default-read', 'comments-read');
-```
-
-## Zobrazení toho, co uživatel smí použít
-
-`isPermitted()` je `isAnyAllowed()` pro menu a tlačítka: bez autorizátoru (bez drago-ex/permission)
-vrací vždy true a zdroj, který ACL nezná, je zamítnut místo vyhození výjimky. Každá role se ptá zvlášť, takže role,
-kterou ACL nezná (např. zastaralá v session), nezamítne ostatní:
-```php
-$currentUser->isPermitted('Backend:Blog', 'articles-write');
-```
-
 ## Poznámky
 
-- Balíček nepřihlašuje uživatele; dává bezpečný přístup k údajům identity a výše popsané kontroly oprávnění
-  (samotné ACL pochází z drago-ex/permission).
+- Balíček nepřihlašuje uživatele; dává bezpečný přístup k údajům identity (kontroly oprávnění pocházejí
+  z drago-ex/permission).
