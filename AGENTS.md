@@ -1,44 +1,19 @@
 # Agent Guide
 
-Use this file as package-specific guidance when working in this repository. Keep changes aligned with the existing public API, project conventions, and supported PHP range.
+`drago-ex/project-user` (type drago-tools-resource, PHP >=8.3 <9): `CurrentUser`, the signed-in user with typed
+identity data. The workspace rules are in `../AGENTS.md`; dependencies are in `composer.json`.
 
-## Package Overview
-- **Package**: `drago-ex/project-user`
-- **Type**: drago-tools-resource
-- **Purpose**: A small helper package for working with the authenticated user in Drago project.
-- **PHP**: >=8.3 <9
-- **Runtime dependencies**: nette/security (^3.2), nette/application (^3.2)
-- **License**: MIT
+## Layout
+- `resources/Security` is copied to `app/Core/Security`: `CurrentUser`, `UserIdentity`,
+  `UserIdentityException`, `UserConf.neon` (replaces the Nette `user` service with `CurrentUser`).
 
-## Repository Layout
-- `resources/`: application resources contributed to the consuming Drago project.
-- `.github/`: CI workflows; keep their PHP versions and commands consistent with Composer and the package scripts.
-- `composer.json`: package metadata, dependency constraints, autoloading, and available Composer scripts.
+## How it works
+- `CurrentUser::getUserIdentity()` returns username and email from the identity data (`getData()`, never magic
+  properties), `UserIdentityException` when missing. The user menus of project-backend-ui and project-front-ui use it.
+- `CurrentUser` has no permission checks: menus and buttons use `Drago\Permission\Privilege::isAllowed()` with
+  Nette's `User`.
 
-## Key Parts
-- `resources/Security` is copied to `app/Core/Security`; `UserConf.neon` replaces Nette's `user` service with `CurrentUser`.
-- `CurrentUser::getUserIdentity()` (typed username + email, `UserIdentityException` when missing) is used by the user menu of project-backend-ui. `CurrentUser` has no permission checks: menus and buttons use `Drago\Permission\Privilege::isAllowed()` (any of the privileges, unknown resource → false) with Nette's `User`.
-
-## Dependencies
-
-Composer constraints describe the package contract. Before changing integration behavior, inspect the source and the actual call sites in this package; do not infer runtime usage solely from dependency declarations.
-Development dependencies include phpstan/phpstan-nette (^2.0).
-
-## Essential Commands
-
+## Commands
 ```bash
-composer phpstan                # phpstan analyse
+composer phpstan
 ```
-
-## Tests
-
-This repository does not currently define a test script in `composer.json` or contain a `tests/` directory.
-Do not claim behavior is covered by tests unless you find and run a relevant suite. When adding a test suite, follow the package’s existing Nette Tester setup if one is present and add an explicit Composer script.
-
-## Conventions & Rules
-
-- Preserve backward compatibility unless the task explicitly permits a breaking change. Check callers and public signatures before changing behavior.
-- Follow the existing PHP style: strict types, explicit parameter and return types, tabs for indentation, and single-quoted strings where practical. Match nearby code when a convention is unclear.
-- Keep package-specific configuration, resources, and migrations in their established directories. Do not edit generated or consuming-project files without confirming they are part of this repository’s intended output.
-- Add or update focused tests for behavioral changes when this package has a runnable test setup. Do not invent test commands; use only the scripts and configuration present here.
-- Update README examples and Composer metadata when a public API or supported requirement changes.
